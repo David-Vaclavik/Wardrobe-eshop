@@ -1,75 +1,157 @@
-# React + TypeScript + Vite
+# E-Shop Development Roadmap
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Phase 1: Setup & Foundations
 
-Currently, two official plugins are available:
+### Task 1 (1h): Project Initialization - ✅ Task completed
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Create project
+- Install dependencies
+- Git initialization
+- First commit
+- added Tasks to README.md
 
-## React Compiler
+### Task 2 (1h): Project Structure
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- Setup folders (components, pages, services, hooks, types)
+- Create layout component
 
-Note: This will impact Vite dev & build performances.
+### Task 3 (1h): DummyJSON API Service
 
-## Expanding the ESLint configuration
+- Build API client
+- Implement loading/error handling
+- Define TypeScript product types
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Phase 2: Product Listing
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Task 4 (1h): Product List Page
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Fetch products from API
+- Render product grid
+- Display image, title, and price
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Task 5 (1h): Product Card Component
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Create reusable card component
+- Add price formatting
+- Implement image fallback
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Task 6 (1h): Loading & Error UX
+
+- Add skeletons/spinners
+- Design error UI
+- Implement retry logic
+
+---
+
+## Phase 3: Product Details
+
+### Task 7 (1h): Product Detail Page
+
+- Setup dynamic route
+- Fetch product by ID
+- Display description and price
+
+### Task 8 (1h): Image Gallery
+
+- Add thumbnail switching
+- Create main image preview
+- Implement user interactions
+
+---
+
+## Phase 4: Cart Functionality
+
+### Task 9 (1h): Cart State Setup
+
+- Setup Context/Reducer
+- Implement add/remove logic
+- Handle quantity updates
+
+### Task 10 (1h): Add to Cart
+
+- Create "Add to Cart" button
+- Merge quantities for duplicate items
+- Provide user feedback
+
+### Task 11 (1h): Cart Page
+
+- Display cart item list
+- Add quantity controls
+- Implement remove action
+
+### Task 12 (1h): Cart Totals
+
+- Calculate subtotal
+- Mock tax/shipping
+- Display total price
+
+---
+
+## Phase 5: Search & Filters
+
+### Task 13 (1h): Category Filtering
+
+- Fetch product categories
+- Filter product list by category
+
+### Task 14 (1h): Search Functionality
+
+- Add search input
+- Implement debounce
+- Filter products by title
+
+### Task 15 (1h): Sorting
+
+- Sort by price
+- Sort by rating
+
+---
+
+## Phase 6: UX & Polish
+
+### Task 16 (1h): Global Layout
+
+- Create header with cart badge
+- Add footer
+- Implement navigation
+
+### Task 17 (1h): Responsive Design
+
+- Optimize mobile grid
+- Make images responsive
+- Improve touch UX
+
+### Task 18 (1h): Empty States
+
+- Design empty cart state
+- Handle no search results
+- Create error states
+
+---
+
+## Phase 7: Quality & Portfolio
+
+### Task 19 (1h): Performance Optimization
+
+- Add memoization
+- Implement lazy loading
+- Optimize render performance
+
+### Task 20 (1h): Code Cleanup
+
+- Remove dead code
+- Improve naming conventions
+- Minor refactors
+
+### Task 21 (1h): README & Documentation
+
+- Write project overview
+- List features
+- Document tech stack
+- Add screenshots
+
+---
+
+**Total Estimated Time:** 21 hours
