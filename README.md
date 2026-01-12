@@ -10,10 +10,11 @@
 - First commit
 - added Tasks to README.md
 
-### Task 2 (1h): Project Structure
+### Task 2 (1h): Project Structure - ✅ Task completed
 
 - Setup folders (components, pages, services, hooks, types)
-- Create layout component
+- Create layout components (Header, Footer)
+- Setup routing with React Router
 
 ### Task 3 (1h): DummyJSON API Service
 
