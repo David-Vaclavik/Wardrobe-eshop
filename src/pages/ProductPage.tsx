@@ -1,9 +1,9 @@
 import { useParams } from "react-router";
 
 export function ProductPage() {
-  const { id } = useParams(); // Gets "42", "abc123", or "nike-shoes"
+  const { id } = useParams();
 
-  console.log(id); // "42"
+  console.log(id); // for testing purposes, to see if the id is correctly passed, will be removed later
 
   return (
     <>

@@ -5,6 +5,7 @@ export function ShopPage() {
     <>
       <h1>Shop Page</h1>
       {/* product has an dynamic id parameter, hardcoded for now */}
+      {/* temporary solution for testing purposes only, later it will be assigned properly to each product */}
       <Link to="/product/1">
         <button>Product 1</button>
       </Link>

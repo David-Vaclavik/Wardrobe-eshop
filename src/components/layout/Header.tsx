@@ -13,6 +13,7 @@ export function Header() {
           <button>Shop</button>
         </Link>
         {/* product has an dynamic id parameter, hardcoded for now */}
+        {/* temporary solution for testing purposes only, will be removed later */}
         <Link to="/product/1">
           <button>Product</button>
         </Link>
