@@ -14,3 +14,8 @@ export type ProductsResponse = {
   skip: number;
   limit: number;
 };
+
+export type OutletContext = {
+  setSkip: React.Dispatch<React.SetStateAction<number>>;
+  products: Product[];
+};
