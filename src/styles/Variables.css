@@ -16,9 +16,6 @@
 
   --btn-text: oklch(0.96 0 264);
   --btn-text-hover: oklch(1 0 264);
-  /* --btn-hover: oklch(35.08% 0.11428 23.571); */
-  --btn-hover: oklch(46% 0.15 23.571);
-  /* --btn-hover: oklch(from var(--primary) calc(l - 0.06) c h); */
-  /* --btn-hover: oklch(from var(--primary) calc(l + 0.06) c h); */
-  --btn-active: oklch(30.08% 0.11428 23.571);
+  --btn-hover: oklch(from var(--primary) 47% 0.15 h);
+  --btn-active: oklch(from var(--primary) 32% c h);
 }
