@@ -1,3 +1,9 @@
 footer {
+  display: flex;
+  justify-content: center;
   padding: 20px;
+  width: 100%;
+
+  color: var(--text-footer);
+  background-color: var(--bg-footer);
 }
