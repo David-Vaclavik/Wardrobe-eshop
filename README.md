@@ -16,11 +16,12 @@
 - Create layout components (Header, Footer)
 - Setup routing with React Router
 
-### Task 3 (1h): DummyJSON API Service
+### Task 3 (1h): DummyJSON API Service - ✅ Task completed
 
 - Build API client
 - Implement loading/error handling
 - Define TypeScript product types
+- Fetch products from API
 
 ---
 
@@ -28,7 +29,6 @@
 
 ### Task 4 (1h): Product List Page
 
-- Fetch products from API
 - Render product grid
 - Display image, title, and price
 
