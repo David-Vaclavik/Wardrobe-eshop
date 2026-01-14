@@ -63,7 +63,7 @@ button {
   color: var(--btn-text);
   background-color: var(--primary);
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, transform 0.6s ease-in-out;
+  transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
 }
 button:hover {
   color: var(--btn-text-hover);
@@ -71,5 +71,4 @@ button:hover {
 }
 button:active {
   background-color: var(--btn-active);
-  transform: scale(0.98);
 }
