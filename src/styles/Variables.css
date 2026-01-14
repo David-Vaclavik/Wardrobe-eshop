@@ -1,0 +1,24 @@
+:root {
+  --bg-dark: oklch(0.92 0 264);
+  --bg: oklch(0.96 0 264);
+  --bg-light: oklch(1 0 264);
+  --bg-footer: oklch(0.1 0 264);
+
+  --text: oklch(0.15 0 264);
+  --text-muted: oklch(0.4 0 264);
+  --text-footer: oklch(0.88 0 264);
+
+  --highlight: oklch(1 0 264);
+  --border: oklch(0.6 0 264);
+  --border-muted: oklch(0.7 0 264);
+
+  --primary: oklch(41.08% 0.11428 23.571);
+
+  --btn-text: oklch(0.96 0 264);
+  --btn-text-hover: oklch(1 0 264);
+  /* --btn-hover: oklch(35.08% 0.11428 23.571); */
+  --btn-hover: oklch(46% 0.15 23.571);
+  /* --btn-hover: oklch(from var(--primary) calc(l - 0.06) c h); */
+  /* --btn-hover: oklch(from var(--primary) calc(l + 0.06) c h); */
+  --btn-active: oklch(30.08% 0.11428 23.571);
+}

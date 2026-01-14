@@ -1,0 +1,24 @@
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  text-wrap: balance;
+  padding: 10px;
+
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    padding: 10px;
+  }
+
+  p {
+    font-size: 1.25em;
+    font-weight: 600;
+  }
+}
