@@ -18,4 +18,6 @@ export type ProductsResponse = {
 export type OutletContext = {
   setSkip: React.Dispatch<React.SetStateAction<number>>;
   products: Product[];
+  isLoading: boolean;
+  hasMore: boolean;
 };
