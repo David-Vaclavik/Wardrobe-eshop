@@ -27,16 +27,16 @@
 
 ## Phase 2: Product Listing
 
-### Task 4 (1h): Product List Page
+### Task 4 (1h): Product List Page - ✅ Task completed
 
 - Render product grid
 - Display image, title, and price
 
-### Task 5 (1h): Product Card Component
+### Task 5 (1h): Product Card Component - ✅ Task completed
 
 - Create reusable card component
 - Add price formatting
-- Implement image fallback
+- Implement infinite scroll
 
 ### Task 6 (1h): Loading & Error UX
 
