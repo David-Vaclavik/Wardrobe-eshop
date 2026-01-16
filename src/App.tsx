@@ -6,6 +6,7 @@ import { Header } from "./components/layout/Header";
 import { useEffect, useState } from "react";
 import { fetchPaginatedProducts } from "./services/productsApi";
 import type { Product } from "./types";
+import { ErrorState } from "./components/ErrorState";
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -55,7 +56,9 @@ function App() {
     };
   }, [skip, hasMore]);
 
-  if (error) return <p>Error: {error}</p>;
+  if (error) {
+    return <ErrorState message={error} />;
+  }
 
   return (
     <>
