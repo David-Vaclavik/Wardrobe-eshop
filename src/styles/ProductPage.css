@@ -1,0 +1,44 @@
+main:has(.product-page) {
+  justify-content: center;
+}
+
+.product-page {
+  display: flex;
+  gap: 20px;
+}
+
+.image-carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  img {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    object-fit: contain;
+
+    padding: 10px;
+    background-color: var(--bg-light);
+  }
+
+  .image-carousel-controls {
+    display: flex;
+    gap: 10px;
+
+    button {
+      padding: 4px 16px;
+      font-size: 1.5em;
+    }
+  }
+}
+
+.product-details {
+  h3 {
+    font-size: 1.25em;
+  }
+
+  p {
+    color: var(--text-muted);
+  }
+}
