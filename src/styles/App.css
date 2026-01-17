@@ -11,8 +11,12 @@ main {
   display: flex;
   flex: 1;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 20px;
   padding: 20px;
+
+  h1 {
+    margin-bottom: 10px;
+  }
 }
