@@ -50,7 +50,7 @@ export function SearchBar() {
           {filteredData.map((product) => (
             <li
               key={product.id}
-              onMouseDown={() => {
+              onPointerDown={() => {
                 setSearchTerm(product.title);
                 setIsOpen(false);
               }}
