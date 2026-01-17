@@ -1,29 +1,28 @@
 import { Link } from "react-router";
 import "./../../styles/Header.css";
+import logo40 from "../../assets/logo40.svg";
+import { ShoppingCart, Store } from "lucide-react";
+import { SearchBar } from "../SearchBar";
 
 export function Header() {
   return (
     <header>
-      <h1>Header</h1>
-      <nav>
+      <div className="header-main">
         <Link to="/">
-          <button>Home</button>
+          <img className="logo" src={logo40} alt="Shop Logo" />
         </Link>
-        <Link to="/shop">
-          <button>Shop</button>
-        </Link>
-        {/* product has an dynamic id parameter, hardcoded for now */}
-        {/* temporary solution for testing purposes only, will be removed later */}
-        <Link to="/product/1">
-          <button>Product</button>
-        </Link>
-        <Link to="/cart">
-          <button>Cart</button>
-        </Link>
-        <Link to="/error">
-          <button>ErrorPage</button>
-        </Link>
-      </nav>
+
+        <SearchBar />
+
+        <div className="controls">
+          <Link to="/shop">
+            <Store size={36} />
+          </Link>
+          <Link to="/cart">
+            <ShoppingCart size={36} />
+          </Link>
+        </div>
+      </div>
     </header>
   );
 }
