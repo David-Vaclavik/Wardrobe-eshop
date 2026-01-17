@@ -6,20 +6,21 @@ import { LOADING_SKELETON_COUNT } from "../config/constants";
 
 type ProductsGridProps = {
   products: Product[];
-  isLoading?: boolean;
+  isLoading: boolean;
 };
 
-export function ProductsGrid({ products, isLoading = false }: ProductsGridProps) {
+export function ProductsGrid({ products, isLoading }: ProductsGridProps) {
   return (
     <div className="products-grid">
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
 
-      {isLoading &&
-        Array.from({ length: LOADING_SKELETON_COUNT }).map((_, i) => (
-          <ProductCardSkeleton key={`skeleton-${i}`} />
-        ))}
+      {isLoading
+        ? Array.from({ length: LOADING_SKELETON_COUNT }).map((_, i) => (
+            <ProductCardSkeleton key={`skeleton-${i}`} />
+          ))
+        : null}
     </div>
   );
 }

@@ -56,15 +56,15 @@ function App() {
     };
   }, [skip, hasMore]);
 
-  if (error) {
-    return <ErrorState message={error} />;
-  }
-
   return (
     <>
       <Header />
       <main>
-        <Outlet context={{ setSkip, products, isLoading, hasMore }} />
+        {error ? (
+          <ErrorState message={error} />
+        ) : (
+          <Outlet context={{ setSkip, products, isLoading, hasMore }} />
+        )}
       </main>
       <Footer />
     </>
