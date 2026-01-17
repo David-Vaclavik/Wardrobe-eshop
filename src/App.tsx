@@ -6,6 +6,7 @@ import { Header } from "./components/layout/Header";
 import { useEffect, useState } from "react";
 import { fetchPaginatedProducts } from "./services/productsApi";
 import type { Product } from "./types";
+import { ErrorState } from "./components/ErrorState";
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -55,13 +56,15 @@ function App() {
     };
   }, [skip, hasMore]);
 
-  if (error) return <p>Error: {error}</p>;
-
   return (
     <>
       <Header />
       <main>
-        <Outlet context={{ setSkip, products, isLoading, hasMore }} />
+        {error ? (
+          <ErrorState message={error} />
+        ) : (
+          <Outlet context={{ setSkip, products, isLoading, hasMore }} />
+        )}
       </main>
       <Footer />
     </>

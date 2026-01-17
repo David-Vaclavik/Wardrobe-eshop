@@ -38,7 +38,7 @@
 - Add price formatting
 - Implement infinite scroll
 
-### Task 6 (1h): Loading & Error UX
+### Task 6 (1h): Loading & Error UX - ✅ Task completed
 
 - Add skeletons/spinners
 - Design error UI

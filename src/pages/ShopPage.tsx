@@ -3,6 +3,8 @@ import type { OutletContext } from "../types";
 import { ProductsGrid } from "../components/ProductsGrid";
 import { useEffect, useRef } from "react";
 import "../styles/ShopPage.css";
+import { ProductCardSkeleton } from "../components/ProductCardSkeleton";
+import { PRODUCTS_BATCH_SIZE } from "../config/constants";
 
 export function ShopPage() {
   const { setSkip, products, isLoading, hasMore } = useOutletContext<OutletContext>();
@@ -32,13 +34,25 @@ export function ShopPage() {
     };
   }, [isLoading, hasMore, setSkip, products.length]);
 
+  if (isLoading && products.length === 0) {
+    return (
+      <>
+        <h1>Shop Page</h1>
+
+        <div className="products-grid">
+          {Array.from({ length: PRODUCTS_BATCH_SIZE }).map((_, i) => (
+            <ProductCardSkeleton key={i} />
+          ))}
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <h1>Shop Page</h1>
-      {/* temporary button for testing purposes only */}
-      <button onClick={() => console.log(products)}>CLG products</button>
 
-      <ProductsGrid products={products} />
+      <ProductsGrid products={products} isLoading={isLoading} />
 
       <div className="load-more-sentinel" ref={loadMoreRef}>
         {isLoading && <h3>Loading more products...</h3>}
