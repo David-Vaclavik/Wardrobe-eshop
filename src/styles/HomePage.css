@@ -2,6 +2,7 @@ main:has(.home-page) {
   padding: 0;
   width: 100%;
   position: relative;
+  justify-content: center;
 }
 
 main:has(.home-page)::after {
