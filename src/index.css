@@ -32,6 +32,10 @@ dialog {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -46,6 +50,12 @@ body {
   justify-content: center;
   align-items: center;
   min-width: 320px;
+
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
 h1 {
@@ -63,7 +73,9 @@ button {
   color: var(--btn-text);
   background-color: var(--primary);
   cursor: pointer;
-  transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+  transition:
+    background-color 0.15s ease-in-out,
+    color 0.15s ease-in-out;
 }
 button:hover {
   color: var(--btn-text-hover);
