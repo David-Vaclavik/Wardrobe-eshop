@@ -12,10 +12,12 @@ export function ProductPage() {
   const product = products.find((product) => product.id === Number(id));
 
   const handleImages = (direction: "prev" | "next") => {
+    if (!product) return;
+
     if (direction === "next") {
-      setImageId((prev) => (prev < product!.images.length - 1 ? prev + 1 : 0));
+      setImageId((prev) => (prev < product.images.length - 1 ? prev + 1 : 0));
     } else if (direction === "prev") {
-      setImageId((prev) => (prev > 0 ? prev - 1 : product!.images.length - 1));
+      setImageId((prev) => (prev > 0 ? prev - 1 : product.images.length - 1));
     }
   };
 
