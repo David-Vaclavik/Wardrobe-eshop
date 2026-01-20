@@ -48,13 +48,13 @@
 
 ## Phase 3: Product Details
 
-### Task 7 (1h): Product Detail Page
+### Task 7 (1h): Product Detail Page - ✅ Task completed
 
 - Setup dynamic route
 - Fetch product by ID
 - Display description and price
 
-### Task 8 (1h): Image Gallery
+### Task 8 (1h): Image Gallery - ✅ Task completed
 
 - Add thumbnail switching
 - Create main image preview
