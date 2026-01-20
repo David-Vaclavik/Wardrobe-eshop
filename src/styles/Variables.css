@@ -2,11 +2,12 @@
   --bg-dark: oklch(0.92 0 264);
   --bg: oklch(0.96 0 264);
   --bg-light: oklch(1 0 264);
-  --bg-footer: oklch(0.1 0 264);
+  --bg-footer: oklch(0.18 0 264);
 
   --text: oklch(0.15 0 264);
   --text-muted: oklch(0.4 0 264);
-  --text-footer: oklch(0.88 0 264);
+  --text-footer: oklch(0.96 0 264);
+  --text-footer-muted: oklch(0.65 0 264);
 
   --highlight: oklch(1 0 264);
   --border: oklch(0.6 0 264);

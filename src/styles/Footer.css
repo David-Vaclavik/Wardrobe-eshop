@@ -4,14 +4,14 @@ footer {
   justify-content: space-between;
   width: 100%;
   padding: 20px;
-  gap: 10px;
+  gap: 16px;
+  font-weight: 500;
 
-  color: var(--text-footer);
+  color: var(--text-footer-muted);
   background-color: var(--bg-footer);
 
   a {
-    font-weight: 400;
-    color: var(--text-footer);
+    color: var(--text-footer-muted);
     text-decoration: none;
 
     &:hover {
@@ -21,7 +21,9 @@ footer {
   }
 
   h2 {
+    color: var(--text-footer);
     font-weight: 600;
+    margin-bottom: 8px;
   }
 
   .footer-container {
@@ -29,7 +31,7 @@ footer {
     flex: 2;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 16px;
 
     a {
       text-decoration: underline;
@@ -42,22 +44,18 @@ footer {
     }
   }
 
-  .footer-links {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    gap: 5px;
-  }
-
+  .footer-links,
   .footer-contact {
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
+  }
 
+  .footer-contact {
     p {
       display: flex;
-      gap: 10px;
+      gap: 8px;
     }
   }
 }

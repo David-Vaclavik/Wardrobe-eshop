@@ -32,6 +32,10 @@ dialog {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 a {
   font-weight: 600;
   color: var(--text);
@@ -49,6 +53,12 @@ body {
   justify-content: center;
   align-items: center;
   min-width: 320px;
+
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
 h1 {
