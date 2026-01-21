@@ -4,7 +4,7 @@ main:has(.product-page) {
 
 .product-page {
   display: flex;
-  gap: 20px;
+  gap: 2rem;
 }
 
 .image-carousel {
@@ -34,11 +34,58 @@ main:has(.product-page) {
 }
 
 .product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
   h3 {
     font-size: 1.25em;
   }
 
   p {
     color: var(--text-muted);
+  }
+
+  .product-description {
+    h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+.quantity-controls {
+  display: flex;
+  justify-content: flex-start;
+
+  button {
+    padding: 8px 20px;
+  }
+
+  button,
+  input {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  input {
+    text-align: center;
+    width: 60px;
+    border: var(--primary) solid 1px;
+    outline: none;
+    cursor: default;
+  }
+
+  /* Hide number input spinners in Chrome, Safari, Edge, Opera */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Hide number input spinners in Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
   }
 }
