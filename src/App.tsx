@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { fetchPaginatedProducts } from "./services/productsApi";
 import type { Product } from "./types";
 import { ErrorState } from "./components/ErrorState";
+import { useCart } from "./hooks/useCart";
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -14,6 +15,8 @@ function App() {
   const [skip, setSkip] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+
+  const cart = useCart();
 
   // Maybe it's time to move this shit to custom hook? IDK
   useEffect(() => {
@@ -63,7 +66,7 @@ function App() {
         {error ? (
           <ErrorState message={error} />
         ) : (
-          <Outlet context={{ setSkip, products, isLoading, hasMore }} />
+          <Outlet context={{ setSkip, products, isLoading, hasMore, cart }} />
         )}
       </main>
       <Footer />

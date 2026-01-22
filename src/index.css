@@ -24,7 +24,7 @@ dialog {
   line-height: 1.5;
 
   color: var(--text);
-  background-color: var(--bg-dark);
+  background-color: var(--bg-light);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

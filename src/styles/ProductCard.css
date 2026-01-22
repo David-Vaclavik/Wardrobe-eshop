@@ -7,8 +7,8 @@
   text-wrap: balance;
   padding: 10px;
 
-  background-color: var(--bg);
-  border: 1px solid var(--border);
+  background-color: var(--bg-light);
+  border: 1px solid var(--border-muted);
 
   img {
     max-width: 100%;

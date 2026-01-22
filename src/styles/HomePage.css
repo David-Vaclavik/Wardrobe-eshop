@@ -3,6 +3,7 @@ main:has(.home-page) {
   width: 100%;
   position: relative;
   justify-content: center;
+  max-width: unset;
 }
 
 main:has(.home-page)::after {

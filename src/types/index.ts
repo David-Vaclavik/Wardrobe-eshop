@@ -15,9 +15,21 @@ export type ProductsResponse = {
   limit: number;
 };
 
+export type CartItem = {
+  product: Product;
+  quantity: number;
+};
+
+export type Cart = {
+  cartItems: CartItem[];
+  updateQuantity: (product: Product, quantity: number) => void;
+  removeFromCart: (productId: number) => void;
+};
+
 export type OutletContext = {
   setSkip: React.Dispatch<React.SetStateAction<number>>;
   products: Product[];
   isLoading: boolean;
   hasMore: boolean;
+  cart: Cart;
 };

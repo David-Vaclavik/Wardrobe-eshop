@@ -64,13 +64,13 @@
 
 ## Phase 4: Cart Functionality
 
-### Task 9 (1h): Cart State Setup
+### Task 9 (1h): Cart State Setup - ✅ Task completed
 
-- Setup Context/Reducer
+- Setup cart state
 - Implement add/remove logic
 - Handle quantity updates
 
-### Task 10 (1h): Add to Cart
+### Task 10 (1h): Add to Cart - ✅ Task completed
 
 - Create "Add to Cart" button
 - Merge quantities for duplicate items
