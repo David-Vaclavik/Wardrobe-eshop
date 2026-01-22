@@ -1,5 +1,3 @@
-import type { Cart } from "../hooks/useCart";
-
 // There are more fields available, but these are the ones we need for now
 export type Product = {
   id: number;
@@ -15,6 +13,17 @@ export type ProductsResponse = {
   total: number;
   skip: number;
   limit: number;
+};
+
+export type CartItem = {
+  product: Product;
+  quantity: number;
+};
+
+export type Cart = {
+  cartItems: CartItem[];
+  updateQuantity: (product: Product, quantity: number) => void;
+  removeFromCart: (productId: number) => void;
 };
 
 export type OutletContext = {

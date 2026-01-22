@@ -28,7 +28,7 @@ export function ProductPage() {
     }
   };
 
-  const handleChange = (quantity: number) => {
+  const handleQuantityClick = (quantity: number) => {
     if (!product) return;
 
     updateQuantity(product, quantity);
@@ -60,14 +60,20 @@ export function ProductPage() {
 
         <div className="quantity-controls">
           {quantityInCart === 0 ? (
-            <button onClick={() => handleChange(1)}>Add to Cart</button>
+            <button onClick={() => handleQuantityClick(1)}>Add to Cart</button>
           ) : (
             <>
-              <button onClick={() => handleChange(-1)} style={{ borderRadius: "8px 0 0 8px" }}>
+              <button
+                onClick={() => handleQuantityClick(-1)}
+                style={{ borderRadius: "8px 0 0 8px" }}
+              >
                 -
               </button>
               <input type="number" min="0" value={quantityInCart} readOnly />
-              <button onClick={() => handleChange(1)} style={{ borderRadius: "0 8px 8px 0" }}>
+              <button
+                onClick={() => handleQuantityClick(1)}
+                style={{ borderRadius: "0 8px 8px 0" }}
+              >
                 +
               </button>
             </>

@@ -1,52 +1,29 @@
 import { useEffect, useState } from "react";
-import type { Product } from "../types";
-
-export type CartItem = {
-  product: Product;
-  quantity: number;
-};
-
-export type Cart = {
-  cartItems: CartItem[];
-  updateQuantity: (product: Product, quantity: number) => void;
-  removeFromCart: (productId: number) => void;
-};
+import type { Cart, CartItem, Product } from "../types";
 
 export function useCart(): Cart {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   // Logger for testing purposes, will remove later
   useEffect(() => {
-    let ignore = false;
-
-    if (ignore) return;
-    console.log("Logger", cartItems[0]);
-
-    return () => {
-      ignore = true;
-    };
+    console.log("Logger", cartItems);
   }, [cartItems]);
 
   const updateQuantity = (product: Product, quantity: number) => {
     setCartItems((prev) => {
-      const existingItem = prev.find((item) => item.product.id === product.id);
+      const index = prev.findIndex((item) => item.product.id === product.id);
 
       // Update quantity or remove existing item
-      if (existingItem) {
-        const newCartItems = prev.map((item) => {
-          if (item.product.id === product.id) {
-            const newQuantity = item.quantity + quantity;
-            return { ...item, quantity: newQuantity };
-          }
+      if (index !== -1) {
+        const newCart = [...prev];
+        const newQty = newCart[index].quantity + quantity;
 
-          return item;
-        });
-
-        return newCartItems.filter((item) => item.quantity > 0);
+        newCart[index] = { ...newCart[index], quantity: newQty };
+        return newCart.filter((item) => item.quantity > 0);
       }
 
       // Add new item
-      if (!existingItem && quantity > 0) {
+      if (index === -1 && quantity > 0) {
         return [...prev, { product, quantity }];
       }
 
