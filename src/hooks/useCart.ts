@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Cart, CartItem, Product } from "../types";
+import { SHIPPING_FEE, TAX_RATE } from "../config/constants";
 
 export function useCart(): Cart {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -35,5 +36,9 @@ export function useCart(): Cart {
     setCartItems((prev) => prev.filter((item) => item.product.id !== productId));
   };
 
-  return { cartItems, removeFromCart, updateQuantity };
+  const subtotal = cartItems.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
+  const tax = subtotal * TAX_RATE;
+  const total = subtotal + tax + SHIPPING_FEE;
+
+  return { cartItems, removeFromCart, updateQuantity, subtotal, tax, total };
 }
