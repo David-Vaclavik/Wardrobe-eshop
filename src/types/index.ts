@@ -4,7 +4,10 @@ export type Product = {
   title: string;
   description: string;
   price: number;
+  rating: number;
   category: string;
+  brand: string;
+  thumbnail: string;
   images: string[];
 };
 
@@ -32,4 +35,11 @@ export type OutletContext = {
   isLoading: boolean;
   hasMore: boolean;
   cart: Cart;
+  handleCategoryChange: (category: string | null) => void;
+};
+
+export type Categories = {
+  slug: string; // for API call
+  name: string; // for UI display
+  url: string;
 };

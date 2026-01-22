@@ -1,63 +1,36 @@
-import { Outlet } from "react-router";
+import { Outlet, useSearchParams } from "react-router";
 import "./styles/Variables.css";
 import "./styles/App.css";
 import { Footer } from "./components/layout/Footer";
 import { Header } from "./components/layout/Header";
-import { useEffect, useState } from "react";
-import { fetchPaginatedProducts } from "./services/productsApi";
-import type { Product } from "./types";
+import { useState } from "react";
 import { ErrorState } from "./components/ErrorState";
 import { useCart } from "./hooks/useCart";
+import { useProducts } from "./hooks/useProducts";
 
 function App() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [error, setError] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
   const [skip, setSkip] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
+  const category = searchParams.get("category") || null;
 
   const cart = useCart();
 
-  // Maybe it's time to move this shit to custom hook? IDK
-  useEffect(() => {
-    let ignore = false;
+  const { products, error, isLoading, hasMore, setProducts, setHasMore } = useProducts(
+    category,
+    skip
+  );
 
-    const loadProducts = async () => {
-      setIsLoading(true);
-
-      try {
-        const data = await fetchPaginatedProducts(skip);
-
-        if (ignore) return;
-
-        setProducts((prev) => {
-          const newProducts = [...prev, ...data.products];
-
-          if (newProducts.length >= data.total) {
-            setHasMore(false);
-          }
-
-          return newProducts;
-        });
-      } catch (error) {
-        if (!ignore) {
-          setError(error instanceof Error ? error.message : "An error occurred");
-        }
-      } finally {
-        if (!ignore) {
-          setIsLoading(false);
-        }
-      }
-    };
-
-    if (hasMore) {
-      loadProducts();
+  const handleCategoryChange = (newCategory: string | null) => {
+    if (newCategory) {
+      setSearchParams({ category: newCategory });
+    } else {
+      setSearchParams({});
     }
 
-    return () => {
-      ignore = true;
-    };
-  }, [skip, hasMore]);
+    setProducts([]);
+    setSkip(0);
+    setHasMore(true);
+  };
 
   return (
     <>
@@ -66,7 +39,16 @@ function App() {
         {error ? (
           <ErrorState message={error} />
         ) : (
-          <Outlet context={{ setSkip, products, isLoading, hasMore, cart }} />
+          <Outlet
+            context={{
+              setSkip,
+              products,
+              isLoading,
+              hasMore,
+              cart,
+              handleCategoryChange,
+            }}
+          />
         )}
       </main>
       <Footer />
