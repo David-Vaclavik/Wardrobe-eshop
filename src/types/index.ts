@@ -35,7 +35,6 @@ export type OutletContext = {
   isLoading: boolean;
   hasMore: boolean;
   cart: Cart;
-  handleCategoryChange: (category: string | null) => void;
 };
 
 export type Categories = {

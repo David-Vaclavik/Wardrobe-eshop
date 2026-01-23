@@ -8,10 +8,9 @@ import { PRODUCTS_BATCH_SIZE } from "../config/constants";
 import { useCategoryList } from "../hooks/useCategoryList";
 
 export function ShopPage() {
-  const { setSkip, products, isLoading, hasMore, handleCategoryChange } =
-    useOutletContext<OutletContext>();
+  const { setSkip, products, isLoading, hasMore } = useOutletContext<OutletContext>();
 
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const category = searchParams.get("category") || "all";
 
   const categories = useCategoryList();
@@ -41,12 +40,19 @@ export function ShopPage() {
     };
   }, [isLoading, hasMore, setSkip, products.length]);
 
+  const handleCategoryChange = (newCategory: string | null) => {
+    if (newCategory === category) return;
+
+    if (newCategory) {
+      setSearchParams({ category: newCategory });
+    } else {
+      setSearchParams({});
+    }
+  };
+
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selected = e.target.value;
-
-    if (selected !== category) {
-      handleCategoryChange(selected === "all" ? null : selected);
-    }
+    handleCategoryChange(selected === "all" ? null : selected);
   };
 
   if (isLoading && products.length === 0) {

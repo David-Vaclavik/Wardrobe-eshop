@@ -2,11 +2,19 @@ import { useEffect, useState } from "react";
 import { fetchPaginatedProducts, fetchProductsByCategory } from "../services/productsApi";
 import type { Product } from "../types";
 
-export function useProducts(category: string | null, skip: number) {
+export function useProducts(category: string | null) {
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+  const [skip, setSkip] = useState(0);
+
+  // Reset to clean state for fetch, fixes back/forward navigation issues
+  useEffect(() => {
+    setHasMore(true);
+    setProducts([]);
+    setSkip(0);
+  }, [category]);
 
   useEffect(() => {
     let ignore = false;
@@ -50,5 +58,5 @@ export function useProducts(category: string | null, skip: number) {
     };
   }, [skip, hasMore, category]);
 
-  return { products, error, isLoading, hasMore, setProducts, setError, setHasMore };
+  return { products, error, isLoading, hasMore, setSkip };
 }
