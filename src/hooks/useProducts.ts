@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { fetchPaginatedProducts, fetchProductsByCategory } from "../services/productsApi";
 import type { Product } from "../types";
+import { useSearchParams } from "react-router";
 
-export function useProducts(category: string | null) {
+export function useProducts() {
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [skip, setSkip] = useState(0);
+
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get("category") || null;
 
   // Reset to clean state for fetch, fixes back/forward navigation issues
   useEffect(() => {

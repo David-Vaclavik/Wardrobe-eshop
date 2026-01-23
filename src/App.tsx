@@ -1,4 +1,4 @@
-import { Outlet, useSearchParams } from "react-router";
+import { Outlet } from "react-router";
 import "./styles/Variables.css";
 import "./styles/App.css";
 import { Footer } from "./components/layout/Footer";
@@ -8,12 +8,8 @@ import { useCart } from "./hooks/useCart";
 import { useProducts } from "./hooks/useProducts";
 
 function App() {
-  const [searchParams] = useSearchParams();
-  const category = searchParams.get("category") || null;
-
   const cart = useCart();
-
-  const { products, error, isLoading, hasMore, setSkip } = useProducts(category);
+  const { products, error, isLoading, hasMore, setSkip } = useProducts();
 
   return (
     <>
