@@ -76,13 +76,13 @@
 - Merge quantities for duplicate items
 - Provide user feedback
 
-### Task 11 (1h): Cart Page
+### Task 11 (1h): Cart Page - ✅ Task completed
 
 - Display cart item list
 - Add quantity controls
 - Implement remove action
 
-### Task 12 (1h): Cart Totals
+### Task 12 (1h): Cart Totals - ✅ Task completed
 
 - Calculate subtotal
 - Mock tax/shipping

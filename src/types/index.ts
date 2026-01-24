@@ -24,6 +24,9 @@ export type Cart = {
   cartItems: CartItem[];
   updateQuantity: (product: Product, quantity: number) => void;
   removeFromCart: (productId: number) => void;
+  subtotal: number;
+  tax: number;
+  total: number;
 };
 
 export type OutletContext = {
