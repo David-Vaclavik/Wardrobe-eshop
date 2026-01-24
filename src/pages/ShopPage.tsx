@@ -1,13 +1,20 @@
-import { useOutletContext } from "react-router";
+import { useOutletContext, useSearchParams } from "react-router";
 import type { OutletContext } from "../types";
 import { ProductsGrid } from "../components/ProductsGrid";
 import { useEffect, useRef } from "react";
 import "../styles/ShopPage.css";
 import { ProductCardSkeleton } from "../components/ProductCardSkeleton";
 import { PRODUCTS_BATCH_SIZE } from "../config/constants";
+import { useCategoryList } from "../hooks/useCategoryList";
 
 export function ShopPage() {
   const { setSkip, products, isLoading, hasMore } = useOutletContext<OutletContext>();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const category = searchParams.get("category") || "all";
+
+  const categories = useCategoryList();
+
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -15,8 +22,7 @@ export function ShopPage() {
       (entries) => {
         const passConditions = !isLoading && hasMore && products.length > 0;
         if (entries[0].isIntersecting && passConditions) {
-          const BATCH_SIZE = 20;
-          setSkip((prev) => prev + BATCH_SIZE);
+          setSkip((prev) => prev + PRODUCTS_BATCH_SIZE);
         }
       },
       { threshold: 0.1, rootMargin: "150px" }
@@ -33,6 +39,21 @@ export function ShopPage() {
       }
     };
   }, [isLoading, hasMore, setSkip, products.length]);
+
+  const handleCategoryChange = (newCategory: string | null) => {
+    if (newCategory === category) return;
+
+    if (newCategory) {
+      setSearchParams({ category: newCategory });
+    } else {
+      setSearchParams({});
+    }
+  };
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selected = e.target.value;
+    handleCategoryChange(selected === "all" ? null : selected);
+  };
 
   if (isLoading && products.length === 0) {
     return (
@@ -51,6 +72,19 @@ export function ShopPage() {
   return (
     <>
       <h1>Shop Page</h1>
+
+      <div className="filtering">
+        <select value={category} onChange={handleSelectChange}>
+          <option key={"all"} value="all">
+            All Categories
+          </option>
+          {categories.map((cat) => (
+            <option key={cat.slug} value={cat.slug}>
+              {cat.name}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <ProductsGrid products={products} isLoading={isLoading} />
 
