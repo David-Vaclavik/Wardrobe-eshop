@@ -1,36 +1,67 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../styles/SearchBar.css";
-
-// Placeholder data for now, don't want to deal with API yet
-const placeholderData = [
-  { id: 1, title: "Red Shirt" },
-  { id: 2, title: "Blue Jeans" },
-  { id: 3, title: "Green Hat" },
-  { id: 4, title: "Yellow Jacket" },
-  { id: 5, title: "Black Shoes" },
-  { id: 6, title: "Red Socks" },
-];
+import type { Product } from "../types";
+import { useNavigate, useSearchParams } from "react-router";
+import { fetchProductsBySearch } from "../services/productsApi";
 
 export function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [filteredData, setFilteredData] = useState(placeholderData);
+  const [filteredData, setFilteredData] = useState<Product[]>([]);
+
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get("search") || "";
+  const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setSearchTerm(searchQuery);
+  }, [searchQuery]);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     setSearchTerm(inputValue);
     setIsOpen(true);
 
-    const filtered = placeholderData.filter((item) =>
-      item.title.toLowerCase().includes(inputValue.toLowerCase())
-    );
-    setFilteredData(filtered);
+    if (debounceTimer.current) {
+      clearTimeout(debounceTimer.current);
+    }
+
+    debounceTimer.current = setTimeout(() => {
+      const normalizedQuery = inputValue.toLowerCase().trim();
+
+      if (normalizedQuery === "") {
+        setFilteredData([]);
+        return;
+      }
+
+      fetchProductsBySearch(normalizedQuery, 0, 0).then((data) => {
+        // We filter again on client side because API searches multiple fields, we want title only
+        setFilteredData(
+          data.products.filter((item) => item.title.toLowerCase().includes(normalizedQuery))
+        );
+      });
+    }, 300);
   };
 
-  // For now a placeholder submit handler
+  useEffect(() => {
+    return () => {
+      if (debounceTimer.current) {
+        clearTimeout(debounceTimer.current);
+      }
+    };
+  }, []);
+
+  // Changing search param triggers new fetch in useProducts hook
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Searching for:", searchTerm);
+    if (searchTerm === searchQuery) return;
+
+    if (searchTerm) {
+      navigate(`/shop?search=${encodeURIComponent(searchTerm)}`);
+    } else {
+      navigate("/shop");
+    }
   };
 
   return (
@@ -47,17 +78,21 @@ export function SearchBar() {
         />
 
         <ul className={isOpen ? "open" : ""}>
-          {filteredData.map((product) => (
-            <li
-              key={product.id}
-              onPointerDown={() => {
-                setSearchTerm(product.title);
-                setIsOpen(false);
-              }}
-            >
-              {product.title}
-            </li>
-          ))}
+          {filteredData.length > 0 ? (
+            filteredData.map((product) => (
+              <li
+                key={product.id}
+                onPointerDown={() => {
+                  setSearchTerm(product.title);
+                  setIsOpen(false);
+                }}
+              >
+                {product.title}
+              </li>
+            ))
+          ) : (
+            <li>No matches found</li>
+          )}
         </ul>
 
         <button type="submit" style={{ borderRadius: isOpen ? "0 8px 0 0" : "0 8px 8px 0" }}>

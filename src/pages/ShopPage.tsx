@@ -25,7 +25,9 @@ export function ShopPage() {
           setSkip((prev) => prev + PRODUCTS_BATCH_SIZE);
         }
       },
-      { threshold: 0.1, rootMargin: "150px" }
+      //! CRITICAL: rootMargin sometimes causes multiple triggers, adjust as needed
+      //! This is garbage, time spent solving bugs because of this: ~4 hours
+      { threshold: 0.1, rootMargin: "20px" }
     );
 
     const currentRef = loadMoreRef.current;

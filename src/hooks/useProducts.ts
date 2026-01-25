@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { fetchPaginatedProducts, fetchProductsByCategory } from "../services/productsApi";
+import {
+  fetchPaginatedProducts,
+  fetchProductsByCategory,
+  fetchProductsBySearch,
+} from "../services/productsApi";
 import type { Product } from "../types";
 import { useSearchParams } from "react-router";
 
@@ -12,13 +16,14 @@ export function useProducts() {
 
   const [searchParams] = useSearchParams();
   const category = searchParams.get("category") || null;
+  const search = searchParams.get("search") || null;
 
   // Reset to clean state for fetch, fixes back/forward navigation issues
   useEffect(() => {
     setHasMore(true);
     setProducts([]);
     setSkip(0);
-  }, [category]);
+  }, [category, search]);
 
   useEffect(() => {
     let ignore = false;
@@ -27,9 +32,15 @@ export function useProducts() {
       setIsLoading(true);
 
       try {
-        const data = category
-          ? await fetchProductsByCategory(category, skip)
-          : await fetchPaginatedProducts(skip);
+        let data;
+
+        if (search) {
+          data = await fetchProductsBySearch(search, skip);
+        } else if (category) {
+          data = await fetchProductsByCategory(category, skip);
+        } else {
+          data = await fetchPaginatedProducts(skip);
+        }
 
         if (ignore) return;
 
@@ -60,7 +71,7 @@ export function useProducts() {
     return () => {
       ignore = true;
     };
-  }, [skip, hasMore, category]);
+  }, [skip, hasMore, category, search]);
 
   return { products, error, isLoading, hasMore, setSkip };
 }
