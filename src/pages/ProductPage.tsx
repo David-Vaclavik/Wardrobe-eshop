@@ -19,8 +19,6 @@ export function ProductPage() {
   const quantityInCart = cartItem?.quantity ?? 0;
 
   const handleImages = (direction: "prev" | "next") => {
-    if (!product) return;
-
     if (direction === "next") {
       setImageId((prev) => (prev < product.images.length - 1 ? prev + 1 : 0));
     } else if (direction === "prev") {
@@ -29,8 +27,6 @@ export function ProductPage() {
   };
 
   const handleQuantityClick = (quantity: number) => {
-    if (!product) return;
-
     updateQuantity(product, quantity);
   };
 
