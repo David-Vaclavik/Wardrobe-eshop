@@ -9,11 +9,12 @@ import { useProducts } from "./hooks/useProducts";
 
 function App() {
   const cart = useCart();
+  const { cartItems } = cart;
   const { products, error, isLoading, hasMore, setSkip } = useProducts();
 
   return (
     <>
-      <Header />
+      <Header cartItems={cartItems} />
       <main>
         {error ? (
           <ErrorState message={error} />

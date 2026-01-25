@@ -32,6 +32,7 @@ header {
   align-items: center;
   gap: 10px;
   margin-left: 10px;
+  margin-right: 10px;
 
   a {
     display: flex;
@@ -39,5 +40,31 @@ header {
 
   svg {
     color: var(--primary);
+  }
+}
+
+.cart-icon {
+  position: relative;
+
+  .cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+
+    min-width: 24px;
+    height: 24px;
+    padding: 0 6px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: oklch(60% 0.21428 23.571);
+    color: var(--bg-light);
+
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    border-radius: 50%;
   }
 }
