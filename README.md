@@ -112,7 +112,7 @@
 
 ## Phase 6: UX & Polish
 
-### Task 16 (1h): Global Layout
+### Task 16 (1h): Global Layout - ✅ Task completed
 
 - Create header with cart badge
 - Add footer
