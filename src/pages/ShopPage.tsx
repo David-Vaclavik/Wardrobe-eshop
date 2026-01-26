@@ -1,19 +1,14 @@
-import { useOutletContext, useSearchParams } from "react-router";
+import { useOutletContext } from "react-router";
 import type { OutletContext } from "../types";
 import { ProductsGrid } from "../components/ProductsGrid";
 import { useEffect, useRef } from "react";
 import "../styles/ShopPage.css";
 import { ProductCardSkeleton } from "../components/ProductCardSkeleton";
 import { PRODUCTS_BATCH_SIZE } from "../config/constants";
-import { useCategoryList } from "../hooks/useCategoryList";
+import { ShopControls } from "../components/ShopControls";
 
 export function ShopPage() {
   const { setSkip, products, isLoading, hasMore } = useOutletContext<OutletContext>();
-
-  const [searchParams, setSearchParams] = useSearchParams();
-  const category = searchParams.get("category") || "all";
-
-  const categories = useCategoryList();
 
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
@@ -42,25 +37,12 @@ export function ShopPage() {
     };
   }, [isLoading, hasMore, setSkip, products.length]);
 
-  const handleCategoryChange = (newCategory: string | null) => {
-    if (newCategory === category) return;
-
-    if (newCategory) {
-      setSearchParams({ category: newCategory });
-    } else {
-      setSearchParams({});
-    }
-  };
-
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selected = e.target.value;
-    handleCategoryChange(selected === "all" ? null : selected);
-  };
-
   if (isLoading && products.length === 0) {
     return (
       <>
         <h1>Shop Page</h1>
+
+        <ShopControls />
 
         <div className="products-grid">
           {Array.from({ length: PRODUCTS_BATCH_SIZE }).map((_, i) => (
@@ -75,18 +57,7 @@ export function ShopPage() {
     <>
       <h1>Shop Page</h1>
 
-      <div className="filtering">
-        <select value={category} onChange={handleSelectChange}>
-          <option key={"all"} value="all">
-            All Categories
-          </option>
-          {categories.map((cat) => (
-            <option key={cat.slug} value={cat.slug}>
-              {cat.name}
-            </option>
-          ))}
-        </select>
-      </div>
+      <ShopControls />
 
       <ProductsGrid products={products} isLoading={isLoading} />
 

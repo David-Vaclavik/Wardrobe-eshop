@@ -45,3 +45,6 @@ export type Categories = {
   name: string; // for UI display
   url: string;
 };
+
+export type SortBy = "id" | "price" | "rating" | "title";
+export type Order = "asc" | "desc";

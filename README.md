@@ -103,10 +103,12 @@
 - Implement debounce
 - Filter products by title
 
-### Task 15 (1h): Sorting
+### Task 15 (1h): Sorting - ✅ Task completed
 
+- Refactor useProducts hook to accept sort parameters
 - Sort by price
 - Sort by rating
+- Sort by title
 
 ---
 
