@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
-import {
-  fetchPaginatedProducts,
-  fetchProductsByCategory,
-  fetchProductsBySearch,
-} from "../services/productsApi";
-import type { Product } from "../types";
+import { fetchProducts } from "../services/productsApi";
+import type { Order, Product, SortBy } from "../types";
 import { useSearchParams } from "react-router";
 
 export function useProducts() {
@@ -17,13 +13,15 @@ export function useProducts() {
   const [searchParams] = useSearchParams();
   const category = searchParams.get("category") || null;
   const search = searchParams.get("search") || null;
+  const sortBy = (searchParams.get("sortBy") || "id") as SortBy;
+  const order = (searchParams.get("order") || "asc") as Order;
 
   // Reset to clean state for fetch, fixes back/forward navigation issues
   useEffect(() => {
     setHasMore(true);
     setProducts([]);
     setSkip(0);
-  }, [category, search]);
+  }, [category, search, sortBy, order]);
 
   useEffect(() => {
     let ignore = false;
@@ -32,27 +30,22 @@ export function useProducts() {
       setIsLoading(true);
 
       try {
-        let data;
-
-        if (search) {
-          data = await fetchProductsBySearch(search, skip);
-        } else if (category) {
-          data = await fetchProductsByCategory(category, skip);
-        } else {
-          data = await fetchPaginatedProducts(skip);
-        }
+        const data = await fetchProducts(search, category, sortBy, order, skip);
 
         if (ignore) return;
 
-        setProducts((prev) => {
-          const newProducts = [...prev, ...data.products];
+        if (search) {
+          // We filter again on client side because API searches multiple fields, we want title only
+          data.products = data.products.filter((product) =>
+            product.title.toLowerCase().includes(search.toLowerCase())
+          );
+        }
 
-          if (newProducts.length >= data.total) {
-            setHasMore(false);
-          }
+        if (data.limit + skip >= data.total || data.products.length === 0) {
+          setHasMore(false);
+        }
 
-          return newProducts;
-        });
+        setProducts((prev) => [...prev, ...data.products]);
       } catch (error) {
         if (!ignore) {
           setError(error instanceof Error ? error.message : "An error occurred");
@@ -71,7 +64,7 @@ export function useProducts() {
     return () => {
       ignore = true;
     };
-  }, [skip, hasMore, category, search]);
+  }, [skip, hasMore, category, search, sortBy, order]);
 
   return { products, error, isLoading, hasMore, setSkip };
 }

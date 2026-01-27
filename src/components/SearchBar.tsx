@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "../styles/SearchBar.css";
 import type { Product } from "../types";
 import { useNavigate, useSearchParams } from "react-router";
-import { fetchProductsBySearch } from "../services/productsApi";
+import { fetchProducts } from "../services/productsApi";
 
 export function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -35,10 +35,12 @@ export function SearchBar() {
         return;
       }
 
-      fetchProductsBySearch(normalizedQuery, 0, 0).then((data) => {
+      fetchProducts(normalizedQuery, null, "id", "asc", 0, 0).then((data) => {
         // We filter again on client side because API searches multiple fields, we want title only
         setFilteredData(
-          data.products.filter((item) => item.title.toLowerCase().includes(normalizedQuery))
+          data.products
+            .filter((item) => item.title.toLowerCase().includes(normalizedQuery))
+            .splice(0, 5)
         );
       });
     }, 300);
