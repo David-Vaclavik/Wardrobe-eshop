@@ -27,6 +27,7 @@ export type Cart = {
   cartItems: CartItem[];
   updateQuantity: (product: Product, quantity: number) => void;
   removeFromCart: (productId: number) => void;
+  clearCart: () => void;
   subtotal: number;
   tax: number;
   total: number;
@@ -37,7 +38,6 @@ export type OutletContext = {
   products: Product[];
   isLoading: boolean;
   hasMore: boolean;
-  cart: Cart;
 };
 
 export type Categories = {
