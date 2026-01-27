@@ -1,9 +1,28 @@
 import { useEffect, useState } from "react";
 import type { Cart, CartItem, Product } from "../types";
-import { SHIPPING_FEE, TAX_RATE } from "../config/constants";
+import { CART_STORAGE_KEY, SHIPPING_FEE, TAX_RATE } from "../config/constants";
 
 export function useCart(): Cart {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+    const stored = localStorage.getItem(CART_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  // Sync across tabs
+  useEffect(() => {
+    const handleStorage = (event: StorageEvent) => {
+      if (event.key === CART_STORAGE_KEY && event.newValue) {
+        setCartItems(JSON.parse(event.newValue));
+      }
+    };
+
+    window.addEventListener("storage", handleStorage);
+    return () => window.removeEventListener("storage", handleStorage);
+  }, []);
 
   // Logger for testing purposes, will remove later
   useEffect(() => {
@@ -36,9 +55,13 @@ export function useCart(): Cart {
     setCartItems((prev) => prev.filter((item) => item.product.id !== productId));
   };
 
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   const subtotal = cartItems.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
   const tax = subtotal * TAX_RATE;
   const total = subtotal + tax + SHIPPING_FEE;
 
-  return { cartItems, removeFromCart, updateQuantity, subtotal, tax, total };
+  return { cartItems, removeFromCart, updateQuantity, clearCart, subtotal, tax, total };
 }

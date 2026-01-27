@@ -1,13 +1,13 @@
-import { useOutletContext } from "react-router";
 import "../styles/CartPage.css";
-import type { OutletContext, Product } from "../types";
+import type { Product } from "../types";
 import { priceFormatter } from "../config/locale";
-import { Trash2 } from "lucide-react";
+import { Trash2, X } from "lucide-react";
 import { SHIPPING_FEE } from "../config/constants";
+import { useCartContext } from "../context/useCartContext";
 
 export function CartPage() {
-  const { cart } = useOutletContext<OutletContext>();
-  const { cartItems, removeFromCart, updateQuantity, subtotal, tax, total } = cart;
+  const { cartItems, removeFromCart, updateQuantity, clearCart, subtotal, tax, total } =
+    useCartContext();
 
   if (!cartItems) return null;
 
@@ -19,11 +19,19 @@ export function CartPage() {
 
   return (
     <>
-      <h1>Order Summary</h1>
+      <h1 className="main-h1">Order Summary</h1>
 
       <div className="cart-container">
         <div className="cart-items">
-          <h2>Cart Items</h2>
+          <div className="cart-items-header">
+            <h2>Cart Items</h2>
+
+            <button onClick={clearCart}>
+              <X size={28} strokeWidth={2.5} color="red" />
+              Clear Cart
+            </button>
+          </div>
+
           {cartItems.map((item) => (
             <div className="cart-item" key={item.product.id}>
               <img src={item.product.images[0]} alt={item.product.title} />

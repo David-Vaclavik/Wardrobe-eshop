@@ -1,3 +1,8 @@
+.main-h1 {
+  font-family: "Outfit", sans-serif;
+  letter-spacing: 1px;
+}
+
 .cart-container {
   display: flex;
   padding: 2rem 0;
@@ -12,11 +17,36 @@
   width: 100%;
 }
 
+.cart-items-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Outfit, sans-serif;
+
+  button {
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    font-size: 1.25rem;
+    font-weight: 600;
+
+    background-color: transparent;
+    color: var(--text-muted);
+    transition: all 0.25s ease-in-out;
+
+    &:hover {
+      color: red;
+      background-color: var(--bg-dark);
+    }
+  }
+}
+
 .cart-item {
   display: flex;
   align-items: center;
   gap: 1rem;
   padding: 1rem;
+  padding-bottom: 2rem;
   border-bottom: 1px solid var(--border-muted);
 
   img {
@@ -42,7 +72,7 @@
     padding: 6px 12px;
 
     background-color: transparent;
-    color: black;
+    color: var(--text);
 
     &:hover {
       color: red;

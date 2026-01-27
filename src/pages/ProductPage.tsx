@@ -3,12 +3,13 @@ import type { OutletContext } from "../types";
 import "../styles/ProductPage.css";
 import { priceFormatter } from "../config/locale";
 import { useState } from "react";
+import { useCartContext } from "../context/useCartContext";
 
 export function ProductPage() {
   const [imageId, setImageId] = useState(0);
   const { id } = useParams();
-  const { cart } = useOutletContext<OutletContext>();
-  const { cartItems, updateQuantity } = cart;
+
+  const { cartItems, updateQuantity } = useCartContext();
 
   const { products } = useOutletContext<OutletContext>();
   const product = products.find((product) => product.id === Number(id));

@@ -3,13 +3,11 @@ import "./../../styles/Header.css";
 import logo40 from "../../assets/logo40.svg";
 import { ShoppingCart, Store } from "lucide-react";
 import { SearchBar } from "../SearchBar";
-import type { CartItem } from "../../types";
+import { useCartContext } from "../../context/useCartContext";
 
-type HeaderProps = {
-  cartItems: CartItem[];
-};
+export function Header() {
+  const { cartItems } = useCartContext();
 
-export function Header({ cartItems }: HeaderProps) {
   const quantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   const displayQuantity = quantity > 99 ? "99+" : quantity;
 
