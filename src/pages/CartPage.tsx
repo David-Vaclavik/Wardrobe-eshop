@@ -12,8 +12,6 @@ export function CartPage() {
   if (!cartItems) return null;
 
   const handleQuantityClick = (product: Product, quantity: number) => {
-    if (!product) return;
-
     updateQuantity(product, quantity);
   };
 

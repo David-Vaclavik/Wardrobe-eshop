@@ -29,14 +29,21 @@ function urlBuilder(
 ): string {
   const BASE_URL = "https://dummyjson.com/products";
 
-  // Priority: search > category > sort > base
+  let url: URL;
+
   if (search) {
-    return `${BASE_URL}/search?q=${search}&sortBy=${sortBy}&order=${order}&limit=${limit}&skip=${skip}`;
+    url = new URL(`${BASE_URL}/search`);
+    url.searchParams.set("q", search);
   } else if (category) {
-    return `${BASE_URL}/category/${category}?sortBy=${sortBy}&order=${order}&limit=${limit}&skip=${skip}`;
-  } else if (sortBy !== "id" || order !== "asc") {
-    return `${BASE_URL}?sortBy=${sortBy}&order=${order}&limit=${limit}&skip=${skip}`;
+    url = new URL(`${BASE_URL}/category/${category}`);
   } else {
-    return `${BASE_URL}?limit=${limit}&skip=${skip}`;
+    url = new URL(BASE_URL);
   }
+
+  url.searchParams.set("sortBy", sortBy);
+  url.searchParams.set("order", order);
+  url.searchParams.set("limit", limit.toString());
+  url.searchParams.set("skip", skip.toString());
+
+  return url.toString();
 }

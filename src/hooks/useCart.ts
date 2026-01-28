@@ -13,13 +13,13 @@ export function useCart(): Cart {
   }, [cartItems]);
 
   // Sync across tabs
-  useEffect(() => {
-    const handleStorage = (event: StorageEvent) => {
-      if (event.key === CART_STORAGE_KEY && event.newValue) {
-        setCartItems(JSON.parse(event.newValue));
-      }
-    };
+  const handleStorage = (event: StorageEvent) => {
+    if (event.key === CART_STORAGE_KEY && event.newValue) {
+      setCartItems(JSON.parse(event.newValue));
+    }
+  };
 
+  useEffect(() => {
     window.addEventListener("storage", handleStorage);
     return () => window.removeEventListener("storage", handleStorage);
   }, []);

@@ -7,6 +7,7 @@ type CartProviderProps = {
 };
 
 export function CartProvider({ children }: CartProviderProps) {
+  // useCart is only used here to provide the cart context, and context acts as a wrapper
   const cart = useCart();
 
   return <CartContext value={cart}>{children}</CartContext>;

@@ -59,6 +59,8 @@ export function SearchBar() {
     e.preventDefault();
     if (searchTerm === searchQuery) return;
 
+    setIsOpen(false);
+
     if (searchTerm) {
       navigate(`/shop?search=${encodeURIComponent(searchTerm)}`);
     } else {

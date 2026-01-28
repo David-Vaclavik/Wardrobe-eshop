@@ -50,9 +50,9 @@ export function ShopControls() {
         <option key={"all"} value="all">
           All Categories
         </option>
-        {categories.map((cat) => (
-          <option key={cat.slug} value={cat.slug}>
-            {cat.name}
+        {categories.map((category) => (
+          <option key={category.slug} value={category.slug}>
+            {category.name}
           </option>
         ))}
       </select>
