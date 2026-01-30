@@ -9,7 +9,7 @@
   --text-footer: oklch(0.96 0 264);
   --text-footer-muted: oklch(0.65 0 264);
 
-  --highlight: oklch(1 0 264);
+  --highlight: oklch(60% 0.21 23);
   --border: oklch(0.6 0 264);
   --border-muted: oklch(0.7 0 264);
 

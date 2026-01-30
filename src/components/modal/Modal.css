@@ -1,0 +1,102 @@
+.modal {
+  display: none;
+
+  a {
+    color: var(--primary);
+    cursor: pointer;
+  }
+
+  dialog {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    margin: 0;
+    max-width: none;
+
+    border: none;
+    box-shadow:
+      0 10px 25px oklch(0% 0 0 / 0.15),
+      0 4px 10px oklch(0% 0 0 / 0.1);
+
+    /* Setup for transition */
+    opacity: 0;
+    transform: scale(0.95) translateY(-20px);
+
+    /* Enable transitions on discrete properties */
+    transition:
+      opacity 0.25s ease-in-out,
+      transform 0.3s ease-in-out,
+      display 0.3s allow-discrete,
+      overlay 0.3s allow-discrete;
+
+    .dialog-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      padding: 1rem;
+      padding-right: 0;
+
+      height: 350px;
+
+      background-color: var(--bg-light);
+
+      .close-dialog {
+        display: flex;
+        padding: 4px 8px;
+        background: none;
+        outline: none;
+
+        svg {
+          color: var(--highlight);
+        }
+      }
+    }
+  }
+
+  /* Open state */
+  dialog[open] {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  /* Starting style for entry animation */
+  @starting-style {
+    dialog[open] {
+      opacity: 0;
+      transform: scale(1.2) translateY(-20px);
+    }
+  }
+
+  /* Backdrop transitions */
+  dialog::backdrop {
+    backdrop-filter: blur(0px);
+    background-color: rgba(0, 0, 0, 0);
+
+    transition:
+      backdrop-filter 0.3s ease-in-out,
+      background-color 0.3s ease-in-out,
+      display 0.3s allow-discrete,
+      overlay 0.3s allow-discrete;
+  }
+
+  dialog[open]::backdrop {
+    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  @starting-style {
+    dialog[open]::backdrop {
+      backdrop-filter: blur(0px);
+      background-color: rgba(0, 0, 0, 0);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}

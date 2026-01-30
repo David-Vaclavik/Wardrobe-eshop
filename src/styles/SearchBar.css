@@ -77,3 +77,13 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .search-bar.header-search {
+    display: none;
+  }
+
+  .search-bar:not(.header-search) {
+    display: flex;
+  }
+}

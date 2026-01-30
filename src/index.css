@@ -20,7 +20,7 @@ dialog {
 /* =========== reset ends here ============ */
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
 
   color: var(--text);
@@ -34,6 +34,7 @@ dialog {
 
 html {
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 a {
@@ -52,7 +53,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 320px;
+  min-width: 300px;
 
   font-family:
     "Inter",

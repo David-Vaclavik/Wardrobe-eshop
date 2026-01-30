@@ -4,7 +4,12 @@ import type { Product } from "../types";
 import { useNavigate, useSearchParams } from "react-router";
 import { fetchProducts } from "../services/productsApi";
 
-export function SearchBar() {
+type SearchBarProps = {
+  className?: string;
+  onClose?: () => void;
+};
+
+export function SearchBar({ className, onClose }: SearchBarProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [filteredData, setFilteredData] = useState<Product[]>([]);
@@ -60,6 +65,7 @@ export function SearchBar() {
     if (searchTerm === searchQuery) return;
 
     setIsOpen(false);
+    onClose?.();
 
     if (searchTerm) {
       navigate(`/shop?search=${encodeURIComponent(searchTerm)}`);
@@ -69,7 +75,7 @@ export function SearchBar() {
   };
 
   return (
-    <div className="search-bar">
+    <div className={`search-bar ${className || ""}`}>
       <form onSubmit={handleSubmit}>
         <input
           autoComplete="off"
