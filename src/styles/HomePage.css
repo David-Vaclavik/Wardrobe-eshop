@@ -10,7 +10,8 @@ main:has(.home-page)::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../assets/landing.png");
+  /* background-image: url("../assets/landing.png"); */
+  background-image: url("../assets/wardrobe-hero.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -35,9 +36,7 @@ main:has(.home-page)::before {
 
 .home-content {
   padding: 3rem;
-  border-radius: 8px;
   text-align: center;
-  color: white;
 
   h1 {
     color: white;
@@ -48,10 +47,25 @@ main:has(.home-page)::before {
   }
 
   h3 {
-    color: oklch(0.88 0 0);
+    color: var(--bg-dark);
     font-family: Outfit, sans-serif;
     font-weight: 500;
     font-size: 2rem;
     margin-bottom: 2rem;
+    text-wrap: pretty;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-content {
+    padding: 2rem;
+
+    h1 {
+      font-size: 3.5rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
   }
 }
