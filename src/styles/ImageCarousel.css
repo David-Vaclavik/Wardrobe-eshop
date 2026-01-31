@@ -1,0 +1,50 @@
+.image-carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  img {
+    border-radius: 8px;
+    object-fit: contain;
+    height: 300px;
+    padding: 0.5rem;
+    background-color: var(--bg-light);
+  }
+}
+
+.carousel-thumbs {
+  display: flex;
+  gap: 0.5rem;
+
+  button {
+    display: flex;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    border: 1px solid transparent;
+  }
+
+  img {
+    height: 60px;
+    width: auto;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 4px;
+
+    &:hover {
+      border-color: var(--primary);
+    }
+  }
+
+  .active-thumb {
+    border-color: var(--primary);
+  }
+}
+
+@media (max-width: 425px) {
+  .image-carousel .image-main {
+    height: 280px;
+    padding: 0.5rem 0;
+  }
+}

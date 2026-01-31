@@ -2,11 +2,10 @@ import { useOutletContext, useParams } from "react-router";
 import type { OutletContext } from "../types";
 import "../styles/ProductPage.css";
 import { priceFormatter } from "../config/locale";
-import { useState } from "react";
 import { useCartContext } from "../context/useCartContext";
+import { ImageCarousel } from "../components/ImageCarousel";
 
 export function ProductPage() {
-  const [imageId, setImageId] = useState(0);
   const { id } = useParams();
 
   const { cartItems, updateQuantity } = useCartContext();
@@ -19,27 +18,13 @@ export function ProductPage() {
   const cartItem = cartItems.find((item) => item.product.id === product.id);
   const quantityInCart = cartItem?.quantity ?? 0;
 
-  const handleImages = (direction: "prev" | "next") => {
-    if (direction === "next") {
-      setImageId((prev) => (prev < product.images.length - 1 ? prev + 1 : 0));
-    } else if (direction === "prev") {
-      setImageId((prev) => (prev > 0 ? prev - 1 : product.images.length - 1));
-    }
-  };
-
   const handleQuantityClick = (quantity: number) => {
     updateQuantity(product, quantity);
   };
 
   return (
     <div className="product-page">
-      <div className="image-carousel">
-        <img src={product.images[imageId]} alt={product.title} height={300} />
-        <div className="image-carousel-controls">
-          <button onClick={() => handleImages("prev")}>{"<"}</button>
-          <button onClick={() => handleImages("next")}>{">"}</button>
-        </div>
-      </div>
+      <ImageCarousel product={product} />
 
       <div className="product-details">
         <h2>{product.title}</h2>

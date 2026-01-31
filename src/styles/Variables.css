@@ -12,6 +12,7 @@
   --highlight: oklch(60% 0.21 23);
   --border: oklch(0.6 0 264);
   --border-muted: oklch(0.7 0 264);
+  --border-subtle: oklch(0.8 0 264);
 
   --primary: oklch(41.08% 0.11428 23.571);
 
