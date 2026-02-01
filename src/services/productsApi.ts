@@ -1,5 +1,5 @@
 import { PRODUCTS_BATCH_SIZE } from "../config/constants";
-import type { Order, ProductsResponse, SortBy } from "../types";
+import type { Order, Product, ProductsResponse, SortBy } from "../types";
 
 export async function fetchProducts(
   search: string | null = null,
@@ -46,4 +46,22 @@ function urlBuilder(
   url.searchParams.set("skip", skip.toString());
 
   return url.toString();
+}
+
+// Fetches a single product, only used in ProductPage
+export async function fetchProductById(id: string): Promise<ProductsResponse> {
+  const response = await fetch(`https://dummyjson.com/products/${id}`);
+
+  if (!response.ok) {
+    throw new Error(`HTTP Error ${response.status} ${response.statusText}`);
+  }
+
+  const product: Product = await response.json();
+
+  return {
+    products: [product],
+    total: 1,
+    skip: 0,
+    limit: 1,
+  };
 }

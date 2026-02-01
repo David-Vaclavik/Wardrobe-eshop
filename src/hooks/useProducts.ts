@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { fetchProducts } from "../services/productsApi";
+import { fetchProductById, fetchProducts } from "../services/productsApi";
 import type { Order, Product, SortBy } from "../types";
-import { useSearchParams } from "react-router";
+import { useParams, useSearchParams } from "react-router";
 
 export function useProducts() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -16,12 +16,14 @@ export function useProducts() {
   const sortBy = (searchParams.get("sortBy") || "id") as SortBy;
   const order = (searchParams.get("order") || "asc") as Order;
 
+  const { id } = useParams();
+
   // Reset to clean state for fetch, fixes back/forward navigation issues
   useEffect(() => {
     setHasMore(true);
     setProducts([]);
     setSkip(0);
-  }, [category, search, sortBy, order]);
+  }, [category, search, sortBy, order, id]);
 
   useEffect(() => {
     let ignore = false;
@@ -30,7 +32,9 @@ export function useProducts() {
       setIsLoading(true);
 
       try {
-        const data = await fetchProducts(search, category, sortBy, order, skip);
+        const data = id
+          ? await fetchProductById(id)
+          : await fetchProducts(search, category, sortBy, order, skip);
 
         if (ignore) return;
 
@@ -64,7 +68,7 @@ export function useProducts() {
     return () => {
       ignore = true;
     };
-  }, [skip, hasMore, category, search, sortBy, order]);
+  }, [skip, hasMore, category, search, sortBy, order, id]);
 
   return { products, error, isLoading, hasMore, setSkip };
 }
