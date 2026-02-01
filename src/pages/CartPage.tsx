@@ -1,19 +1,14 @@
 import "../styles/CartPage.css";
-import type { Product } from "../types";
 import { priceFormatter } from "../config/locale";
 import { Trash2, X } from "lucide-react";
 import { SHIPPING_FEE } from "../config/constants";
 import { useCartContext } from "../context/useCartContext";
+import { QuantityControl } from "../components/QuantityControl";
 
 export function CartPage() {
-  const { cartItems, removeFromCart, updateQuantity, clearCart, subtotal, tax, total } =
-    useCartContext();
+  const { cartItems, removeFromCart, clearCart, subtotal, tax, total } = useCartContext();
 
   if (!cartItems) return null;
-
-  const handleQuantityClick = (product: Product, quantity: number) => {
-    updateQuantity(product, quantity);
-  };
 
   return (
     <>
@@ -39,21 +34,7 @@ export function CartPage() {
                 <h3>{priceFormatter.format(item.product.price)}</h3>
 
                 <div className="cart-item-controls">
-                  <div className="quantity-controls">
-                    <button
-                      onClick={() => handleQuantityClick(item.product, -1)}
-                      style={{ borderRadius: "8px 0 0 8px" }}
-                    >
-                      -
-                    </button>
-                    <input type="number" min="0" value={item.quantity} readOnly />
-                    <button
-                      onClick={() => handleQuantityClick(item.product, 1)}
-                      style={{ borderRadius: "0 8px 8px 0" }}
-                    >
-                      +
-                    </button>
-                  </div>
+                  <QuantityControl product={item.product} />
 
                   <button className="remove-button" onClick={() => removeFromCart(item.product.id)}>
                     <Trash2 size={20} />

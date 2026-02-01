@@ -43,7 +43,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: var(--primary);
+  color: var(--btn-hover);
 }
 a:active {
   color: var(--btn-active);

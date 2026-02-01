@@ -7,8 +7,15 @@
   text-wrap: balance;
   padding: 10px;
 
+  border-radius: 12px;
+  border: 1px solid transparent;
   background-color: var(--bg-light);
-  border: 1px solid var(--border-muted);
+
+  &:hover {
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+    border-color: var(--border-subtle);
+    transition: all 0.2s ease-in-out;
+  }
 
   img {
     max-width: 100%;
@@ -21,6 +28,13 @@
     font-size: 1.25em;
     font-weight: 600;
   }
+}
+
+.product-card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .product-card.skeleton {

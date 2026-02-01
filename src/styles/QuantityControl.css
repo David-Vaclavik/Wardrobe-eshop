@@ -1,0 +1,44 @@
+.quantity-controls {
+  display: flex;
+  width: 170px;
+
+  button {
+    padding: 8px 20px;
+  }
+
+  button:only-of-type {
+    width: 100%;
+  }
+
+  button,
+  input {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  button {
+    width: 55px;
+  }
+
+  input {
+    text-align: center;
+    width: 60px;
+    border: var(--primary) solid 1px;
+    outline: none;
+    cursor: default;
+    flex: 1;
+  }
+
+  /* Hide number input spinners in Chrome, Safari, Edge, Opera */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Hide number input spinners in Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+}
