@@ -37,3 +37,9 @@ main:has(.product-page) {
     flex-direction: column;
   }
 }
+
+@media (max-width: 480px) {
+  .product-page {
+    align-items: center;
+  }
+}
