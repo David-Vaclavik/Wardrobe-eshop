@@ -2,14 +2,16 @@ import "../styles/ShopControls.css";
 import { useSearchParams } from "react-router";
 import { useCategoryList } from "../hooks/useCategoryList";
 
-export function ShopControls() {
+type ShopControlsProps = {
+  categories: ReturnType<typeof useCategoryList>;
+};
+
+export function ShopControls({ categories }: ShopControlsProps) {
   const [searchParams, setSearchParams] = useSearchParams();
   const category = searchParams.get("category") || "all";
   const search = searchParams.get("search") || null;
   const sortBy = searchParams.get("sortBy") || "id";
   const order = searchParams.get("order") || "asc";
-
-  const categories = useCategoryList();
 
   const handleCategoryChange = (newCategory: string | null) => {
     if (newCategory === category) return;

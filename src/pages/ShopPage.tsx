@@ -1,4 +1,4 @@
-import { useOutletContext } from "react-router";
+import { useOutletContext, useSearchParams } from "react-router";
 import type { OutletContext } from "../types";
 import { ProductsGrid } from "../components/ProductsGrid";
 import { useEffect, useRef } from "react";
@@ -6,9 +6,17 @@ import "../styles/ShopPage.css";
 import { ProductCardSkeleton } from "../components/ProductCardSkeleton";
 import { PRODUCTS_BATCH_SIZE } from "../config/constants";
 import { ShopControls } from "../components/ShopControls";
+import { useCategoryList } from "../hooks/useCategoryList";
 
 export function ShopPage() {
   const { setSkip, products, isLoading, hasMore } = useOutletContext<OutletContext>();
+
+  const categories = useCategoryList();
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get("search") || null;
+  const category = searchParams.get("category") || null;
+
+  const displayCategory = categories.find((cat) => cat.slug === category)?.name || null;
 
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
@@ -40,9 +48,11 @@ export function ShopPage() {
   if (isLoading && products.length === 0) {
     return (
       <>
-        <h1>Shop Page</h1>
+        <h2 className="shop-title">
+          {search ? `Search: "${search}"` : displayCategory ? `${displayCategory}` : "Shop"}
+        </h2>
 
-        <ShopControls />
+        <ShopControls categories={categories} />
 
         <div className="products-grid">
           {Array.from({ length: PRODUCTS_BATCH_SIZE }).map((_, i) => (
@@ -55,9 +65,11 @@ export function ShopPage() {
 
   return (
     <>
-      <h1>Shop Page</h1>
+      <h2 className="shop-title">
+        {search ? `Search: "${search}"` : displayCategory ? `${displayCategory}` : "Shop"}
+      </h2>
 
-      <ShopControls />
+      <ShopControls categories={categories} />
 
       <ProductsGrid products={products} isLoading={isLoading} />
 
