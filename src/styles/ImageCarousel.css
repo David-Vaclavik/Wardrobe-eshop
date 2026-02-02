@@ -47,6 +47,7 @@
     display: flex;
     flex-shrink: 0;
     border: none;
+    outline: none;
     padding: 0;
     background-color: transparent;
     border: 1px solid transparent;
@@ -107,5 +108,9 @@
   .image-carousel .image-main {
     height: 270px;
     padding: 0.5rem 0;
+  }
+
+  .carousel-thumbs {
+    gap: 0.25rem;
   }
 }
