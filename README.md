@@ -1,154 +1,118 @@
-# E-Shop Development Roadmap
+# 👗 Wardrobe E-Shop
 
-## Phase 1: Setup & Foundations
+A modern, responsive e-commerce application built with React, TypeScript, and Vite.
 
-### Task 1 (1h): Project Initialization - ✅ Task completed
+## 🚀 Live Demo
 
-- Create project
-- Install dependencies
-- Git initialization
-- First commit
-- added Tasks to README.md
+[View Live Demo](url here)
 
-### Task 2 (1h): Project Structure - ✅ Task completed
+## ✨ Features
 
-- Setup folders (components, pages, services, hooks, types)
-- Create layout components (Header, Footer)
-- Setup routing with React Router
+- **Product Browsing**: Browse a wide range of products with infinite scroll
+- **Product Details**: View detailed product information with image gallery
+- **Smart Cart**: Add, remove, and update quantities with real-time totals
+- **Persistent Cart**: Cart state syncs across browser tabs and persists after refresh
+- **Search & Filter**: Search products and filter by categories
+- **Sorting**: Sort products by price, rating, or title
+- **Responsive Design**: Optimized for mobile, tablet, and desktop
+- **Loading States**: Skeleton loaders and spinners for better UX
 
-### Task 3 (1h): DummyJSON API Service - ✅ Task completed
+## 🛠️ Tech Stack
 
-- Build API client
-- Implement loading/error handling
-- Define TypeScript product types
-- Fetch products from API
+- **Frontend Framework**: React
+- **Language**: TypeScript
+- **Build Tool**: Vite
+- **Routing**: React Router
+- **Styling**: CSS
+- **API**: DummyJSON API
+- **State Management**: React Context API
+- **Storage**: localStorage for cart persistence
+- **Icons**: Lucide Icons
 
----
+## 📦 Installation
 
-## Phase 2: Product Listing
+1. Clone the repository:
 
-### Task 4 (1h): Product List Page - ✅ Task completed
+```bash
+git clone https://github.com/yourusername/wardrobe-eshop.git
+cd wardrobe-eshop
+```
 
-- Render product grid
-- Display image, title, and price
+2. Install dependencies:
 
-### Task 5 (1h): Product Card Component - ✅ Task completed
+```bash
+npm install
+```
 
-- Create reusable card component
-- Add price formatting
-- Implement infinite scroll
+3. Create a `.env` file based on `.env.example`:
 
-### Task 6 (1h): Loading & Error UX - ✅ Task completed
+```bash
+cp .env.example .env
+```
 
-- Add skeletons/spinners
-- Design error UI
-- Implement retry logic
+4. Start the development server:
 
----
+```bash
+npm run dev
+```
 
-## Phase 3: Product Details
+5. Open your browser and navigate to `http://localhost:5173`
 
-### Task 7 (1h): Product Detail Page - ✅ Task completed
+## 🚀 Deployment
 
-- Setup dynamic route
-- Fetch product by ID
-- Display description and price
+This project is configured for deployment on Vercel with SPA routing support.
 
-### Task 8 (1h): Image Gallery - ✅ Task completed
+```bash
+npm run build
+```
 
-- Add thumbnail switching
-- Create main image preview
-- Implement user interactions
+The `vercel.json` configuration ensures all routes are handled correctly by the client-side router.
 
----
+## 📂 Project Structure
 
-## Phase 4: Cart Functionality
+```
+src/
+├── components/      # Reusable UI components
+├── pages/           # Page components
+├── hooks/           # Custom React hooks
+├── context/         # React Context providers
+├── services/        # API service layer
+├── types/           # TypeScript type definitions
+├── styles/          # CSS stylesheets
+├── config/          # Configuration files
+└── assets/          # Static assets
+```
 
-### Task 9 (1h): Cart State Setup - ✅ Task completed
+## 🔑 Environment Variables
 
-- Setup cart state
-- Implement add/remove logic
-- Handle quantity updates
+```env
+VITE_API_BASE_URL=https://dummyjson.com
+```
 
-### Task 10 (1h): Add to Cart - ✅ Task completed
+## 📝 Available Scripts
 
-- Create "Add to Cart" button
-- Merge quantities for duplicate items
-- Provide user feedback
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
 
-### Task 11 (1h): Cart Page - ✅ Task completed
+## 📄 License
 
-- Display cart item list
-- Add quantity controls
-- Implement remove action
+This project is open source and available under the [MIT License](LICENSE).
 
-### Task 12 (1h): Cart Totals - ✅ Task completed
+## 👤 Author
 
-- Calculate subtotal
-- Mock tax/shipping
-- Display total price
+**David Václavík**
 
----
+- GitHub: [@David-Vaclavik](https://github.com/David-Vaclavik)
 
-## Phase 5: Search & Filters
+## 🙏 Acknowledgments
 
-### Task 13 (1h): Category Filtering - ✅ Task completed
-
-- Fetch product categories
-- Filter product list by category
-
-### Task 14 (1h): Search Functionality - ✅ Task completed
-
-- Add search input
-- Implement debounce
-- Filter products by title
-
-### Task 15 (1h): Sorting - ✅ Task completed
-
-- Refactor useProducts hook to accept sort parameters
-- Sort by price
-- Sort by rating
-- Sort by title
-
-### Additional Task: Cart Persistence - ✅ Task completed
-
-- Implement cart context/provider
-- Implement localStorage for cart state
-- Load cart from localStorage on app start
-- Save cart to localStorage on updates
-- Make cart sync in real-time in all tabs
+- Product data provided by [DummyJSON](https://dummyjson.com/)
+- Logo placeholder from [Logoipsum](https://logoipsum.com/)
+- Icons from [Lucide React](https://lucide.dev/)
+- Fonts: Inter and Orbitron from [Google Fonts](https://fonts.google.com/)
 
 ---
 
-## Phase 6: UX & Polish
-
-### Task 16 (1h): Global Layout - ✅ Task completed
-
-- Create header with cart badge
-- Add footer
-- Implement navigation
-
-### Task 17 (1h): Responsive Design - ✅ Task completed
-
-- Optimize mobile grid
-- Make images responsive
-- Improve touch UX
-
-### Task 18 (1h): Empty States - ✅ Task completed
-
-- Design empty cart state
-- Handle no search results
-- Create error states
-
----
-
-## Phase 7: Quality & Portfolio
-
-### Task 19 (1h): README & Documentation
-
-- Write project overview
-- List features
-- Document tech stack
-- Add screenshots
-
----
+**Note**: This is a demonstration project for educational purposes. It is not a real e-commerce store and does not process actual payments.
