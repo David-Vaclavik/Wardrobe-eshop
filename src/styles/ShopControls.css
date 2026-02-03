@@ -88,14 +88,15 @@ option:checked {
     transition: all 0.2s allow-discrete;
   }
 
-  ::picker(select):popover-open {
+  /*! This blocks deploy */
+  /* ::picker(select):popover-open {
     opacity: 1;
   }
   @starting-style {
     ::picker(select):popover-open {
       opacity: 0;
     }
-  }
+  } */
 }
 
 @media (max-width: 768px) {
