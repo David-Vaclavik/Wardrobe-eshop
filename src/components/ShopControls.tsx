@@ -46,7 +46,6 @@ export function ShopControls({ categories }: ShopControlsProps) {
     handleCategoryChange(selected === "all" ? null : selected);
   };
 
-  //TODO: Add new custom select CSS
   return (
     <div className="shop-controls">
       <select value={category} onChange={handleSelectChange}>
